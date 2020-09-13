@@ -32,4 +32,4 @@ ggplot(longer_df, aes(x = time, y = tweets_n, fill = hashtag)) +
        title = "Hashtag Comparison")
 
 longer_df %>% group_by(hashtag) %>% 
-  sort(tweets_n)
+  tally(tweets_n)
