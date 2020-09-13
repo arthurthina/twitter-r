@@ -1,7 +1,7 @@
 library(rtweet)
 library(tidyr)
+library(dplyr)
 library(ggplot2)
-library(lubridate)
 
 genart_twts <- search_tweets("#generativeart", n = 18000, include_rts = FALSE)
 genart_ts <- ts_data(genart_twts, by = "hours")
@@ -21,11 +21,15 @@ longer_df <- pivot_longer(merged_df,
                           cols = -time,
                           names_to = "hashtag", 
                           values_to = "tweets_n")
+str(longer_df)
 
-
-ggplot(longer_df, aes(x = time, y = tweets_n, col = hashtag)) +
-  geom_line(lwd = 0.6) +
+ggplot(longer_df, aes(x = time, y = tweets_n, fill = hashtag)) +
+  #geom_col(position = "fill") +
+  geom_col() +
   labs(x = "Date",
        y = "Tweets",
        fill = "Hashtag", 
        title = "Hashtag Comparison")
+
+longer_df %>% group_by(hashtag) %>% 
+  sort(tweets_n)
