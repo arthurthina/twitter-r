@@ -1,11 +1,12 @@
-require(httr)
+library(httr)
+library(tidyverse)
 
 bearer_token <- Sys.getenv("v2")
 headers <- c(`Authorization` = sprintf('Bearer %s', bearer_token))
 
 params = list(
   `query` = 'from:rstats_tweets',
-  `max_results` = '10',
+  `max_results` = '100',
   `tweet.fields` = 'created_at,lang,conversation_id'
 )
 
@@ -20,4 +21,8 @@ recent_search_body <-
     simplifyDataFrame = TRUE
   )
 
-View(recent_search_body$data)
+str(recent_search_body)
+
+recent_search_body$data %>% 
+  select(text, created_at) %>% 
+  filter(str_detect(text, "fix"))
