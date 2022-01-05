@@ -12,7 +12,7 @@ hash <- gen_twts %>%
   count(hashtag, sort = TRUE) %>%
   top_n(15)
 
-
+#test
 ggplot(hash, aes(x = reorder(hashtag, n), y = n, fill = hashtag)) +
   geom_col() +
   scale_y_continuous(breaks = seq(from = 0, to = 8000, by = 1000)) +
