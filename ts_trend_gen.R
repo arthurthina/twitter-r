@@ -8,14 +8,14 @@ genart_ts <- ts_data(genart_twts, by = "hours")
 names(genart_ts) <- c("time", "#generativeart")
 head(genart_ts)
 
-
+#Check related hashtags
 gen_twts <- search_tweets("#generative", n = 18000, include_rts = FALSE)
 gen_ts <- ts_data(gen_twts, by = "hours")
 names(gen_ts) <- c("time", "#generative")
 head(gen_ts)
 
 merged_df <- merge(gen_ts, genart_ts, by = "time", all = TRUE)
-head(merged_df)
+head(merged_df, 20)
 
 longer_df <- pivot_longer(merged_df,
                           cols = -time,
