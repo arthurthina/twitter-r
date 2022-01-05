@@ -5,7 +5,7 @@ library(tidytext)
 library(viridis)
 
 gen_twts <- search_tweets("#generativeart", n = 18000, include_rts = FALSE)
-
+#pull hashtag
 hash <- gen_twts %>% 
   unnest_tokens(hashtag, text, "tweets", to_lower = TRUE) %>%
   filter(str_detect(hashtag, "^#")) %>%
