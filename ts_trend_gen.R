@@ -24,7 +24,7 @@ longer_df <- pivot_longer(merged_df,
 str(longer_df)
 
 ggplot(longer_df, aes(x = time, y = tweets_n, fill = hashtag)) +
-  #geom_col(position = "fill") +
+  ##geom_col(position = "fill") +
   geom_col() +
   labs(x = "Date",
        y = "Tweets",
